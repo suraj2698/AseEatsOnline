@@ -23,7 +23,7 @@ if (isset($_POST['submit']))
 		$message = "Could not insert record"; 
 	}
 	echo "<script type='text/javascript'>alert('$message');</script>";
-	$sql1 = "INSERT INTO php_users_login(`email`, `password`) VALUES ('$email', '$pw');";
+	$sql1 = "INSERT INTO php_users_login(`email`, `password`) VALUES ('$email', '$password');";
 	if(mysqli_query($conn, $sql1))
 	{  
 		$message1 = "Added in login table";
@@ -52,46 +52,17 @@ function validate()
 	var alphaExp = /^[a-zA-Z]+$/;
 	var atpos = EmailId.value.indexOf("@");
     var dotpos = EmailId.value.lastIndexOf(".");
- 	if(pw.value.length< 8 || cpw.value.length< 8)
-	{
-		alert("Please enter a password of atleast 8 characters");
-		pw.focus();
-		return false;
-	}
-	else if (pw.value.length != cpw.value.length) 
-	{
-		alert("Passwords do not match.");
-		pw.focus();
-        return false;
-    }
-	else if (pw.value != cpw.value) 
-	{
-		alert("Passwords do not match.");
-		pw.focus();
-        return false;
-    }
-	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=EmailId.value.length) 
-	{
-        alert("Enter valid email-ID");
-		EmailId.focus();
-        return false;
-   	}
-	if(fname.value==null || fname.value=="")
+
+    if(fname.value==null || fname.value=="")
 	{
 		fname.focus();
-		alert("Enter valid first name");
+		alert("Enter valid full name");
 		return false;
 	}
 	if(rollno.value==null || rollno.value=="")
 	{
 		lname.focus();
-		alert("Enter valid last name");
-		return false;
-	}
-	if(EmailId.value==null || EmailId.value=="")
-	{
-		lname.focus();
-		alert("Enter valid last name");
+		alert("Enter valid college roll number");
 		return false;
 	}
 	if(mob.value==null || mob.value==" ")
@@ -112,19 +83,50 @@ function validate()
 		mob.focus();
 		return false;
 	}
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=EmailId.value.length) 
+	{
+        alert("Enter valid email-ID");
+		EmailId.focus();
+        return false;
+   	}
+
+	if(EmailId.value==null || EmailId.value=="")
+	{
+		lname.focus();
+		alert("Enter valid email-ID");
+		return false;
+	}
+
+ 	if(pw.value.length< 8 || cpw.value.length< 8)
+	{
+		alert("Please enter a password of atleast 8 characters");
+		pw.focus();
+		return false;
+	}
+	else if (pw.value.length != cpw.value.length) 
+	{
+		alert("Passwords do not match.");
+		pw.focus();
+        return false;
+    }
+	else if (pw.value != cpw.value) 
+	{
+		alert("Passwords do not match.");
+		pw.focus();
+        return false;
+    }
 	if (confirm("Do you want to submit your details?") == true) {} 
 	else 
 	{
        return false;
     }
-    var survey=prompt("How did you hear about us? (Used only for survey)");
 	return true;
 }
 </SCRIPT>
 </HEAD>
 <BODY  background="background3.jpg" link="white" alink="white" vlink="white">
 <FONT size="4"><NAV align="right">
-<A HREF="">Menu</A>
+<A HREF="order.php">Menu</A>
 <A HREF="register.php">Login/Register</A></FONT></NAV>
 <FORM name="register" method="post" action="register.php" onsubmit="return validate()">
 <TABLE align="center" border="1" bordercolor="white">
@@ -132,11 +134,11 @@ function validate()
 <CAPTION><FONT size="6" color="WHITE">Enter your details:</FONT></CAPTION>
 <TR class="left">
 <TD><FONT size="5" color="WHITE">Full Name:</FONT></TD>
-<TD><INPUT name="fname" type="TEXT" placeholder="Enter your first name" size="50" maxlength="50" align="center" id="fname"></TD>
+<TD><INPUT name="fname" type="TEXT" placeholder="Enter your full name" size="50" maxlength="50" align="center" id="fname"></TD>
 </TR>
 <TR class="left">
 <TD><FONT size="5" color="WHITE">Roll No:</FONT></TD>
-<TD><INPUT type="TEXT" name="roll" align="center" size="50" maxlength="50" placeholder="Enter your last name" id="roll"></TD>
+<TD><INPUT type="TEXT" name="roll" align="center" size="50" maxlength="50" placeholder="Enter your college roll number" id="roll"></TD>
 </TR>
 <TR class="left">
 <TD><FONT size="5" color="WHITE">Mobile Number:</FONT></TD>
